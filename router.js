@@ -8,7 +8,7 @@ Router.map(function () {
     path: '/'
   });
 
-  this.route('map-demo', {
+  this.route('map_demo', {
     path: 'demo'
   });
 
