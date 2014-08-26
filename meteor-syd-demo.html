@@ -3,11 +3,29 @@
 </head>
 
 <body>
-  {{> hello}}
 </body>
 
-<template name="hello">
-  <h1>Hello World!</h1>
-  {{greeting}}
-  <input type="button" value="Click" />
+<template name="home">
+  <h1>Welcome to Meteor Sydney #2</h1>
+  <h3><a href="/blog">Blog</a></h3>
+  <h3><a href="{{pathFor 'map-demo'}}">Map Demo</a></h3>
+</template>
+
+<template name="map-demo">
+  <div class="container">
+    <h2>Let's find our current location...</h2>
+    <form id="user-form">
+      <div class="form-group">
+        <input type="text" name="locationName" class="form-control" placeholder="what is the location's name">
+      </div>
+    </form>
+  </div>
+</template>
+
+<template name="loading">
+  <p>Loading...</p>
+</template>
+
+<template name="notFound">
+  <p>404 - Sorry, we couldn't find the page you requested</p>
 </template>

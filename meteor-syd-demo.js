@@ -1,13 +1,13 @@
 if (Meteor.isClient) {
-  Template.hello.greeting = function () {
-    return "Welcome to meteor-syd-demo.";
-  };
+  Meteor.startup(function () {
+    // Initialise the google map locator
+  });
 
-  Template.hello.events({
-    'click input': function () {
-      // template data, if any, is available in 'this'
-      if (typeof console !== 'undefined')
-        console.log("You pressed the button");
+  Meteor.map-demo.events({
+    'submit form': function(e, tpl) {
+      e.preventDefault();
+      console.log("submitted form");
+      console.log(tpl);
     }
   });
 }
