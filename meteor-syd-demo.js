@@ -4,7 +4,7 @@ if (Meteor.isClient) {
     GoogleMapLocator.init('AIzaSyCwsYUsB5DxzbZ08i2PZlAjcnRXJYvqGNM');
   });
 
-  Template.map_demo.events({
+  Template.demo.events({
     'submit form': function(e, tpl) {
       e.preventDefault();
       console.log("submitted form");
