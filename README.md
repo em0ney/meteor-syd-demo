@@ -10,24 +10,36 @@
 
 ## basic intro
 
-### meteor core packages:
+### Meteor v0.9
 
-- very few. core packages like templates, less, jquery etc.
-- e.g. add less using 'meteor add less'
-	
-### meteorite:
-
-- package management system with pretty awesome community (circa 1700 packages right now)
-- will be part of meteor version 1
-- heaps of popular projects repackaged for easy inclusion on your projects
-- install meteorite. `npm install -g meteorite`
+- Out since 2am when I finished building a demo for the previous version
+- meteorite / mrt has been incorporated into meteor and is called the meteor package system
+- the mrt command is now decomissioned.
+- All packages are added, removed, searched for using `meteor` and not `mrt`
+- See FAQ about the [changes and history](http://blog.percolatestudio.com/engineering/meteor-packaging-questions/)
 - browse packages on [atmosphere](http://atmospherejs.com/)
-- install packages `mrt add iron-router`
-	
+
 	
 #### beneath the surface:
 - all items under packages/ are just symlinks to a .meteorite directory under your user home.  We exploit this later to add local packages!
 
+## 1. customise existing packages
+
+### The wrong way
+
+While you can updated the code for a package under the packages/ directory this is unadvisable because:
+
+1. Your changes will vanish upon an update
+2. Your changes won't be observed when someone else checks out your code and fires up meteor
+3. Your changes probably won't get deployed (depending on how you are deploying your code to 'prod')
+
+### The right way
+
+After installing a package with meteorite, you can point to a different branch or even fork in your smart.json.
+
+1. Stop your server
+2. Update smart.json
+3. Start your server
 
 ## 2. install local packages
 
@@ -44,7 +56,11 @@ Now, fire up your development server, and any change you make to code under your
 
 ## 3. release a public package to atmosphere
 
-Key components:
+According to new docs:
+
+`meteor release --create`
+
+First time doing this on the new version - let's hope for the best!
 
 
 #### Tips
