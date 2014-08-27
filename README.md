@@ -58,9 +58,9 @@ Now, fire up your development server, and any change you make to code under your
 
 According to new docs:
 
-`meteor release --create`
+`meteor publish --create --top-level`
 
-First time doing this on the new version - let's hope for the best!
+Need to also add a version to each dependency and to the Package.describe area.
 
 
 #### Tips

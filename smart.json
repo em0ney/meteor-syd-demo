@@ -1,6 +1,9 @@
 {
   "packages": {
-    "blog": {},
-    "bootstrap-3": {}
+    "bootstrap-3": {},
+    "blog": {
+      "git": "https://github.com/em0ney/meteor-blog.git",
+      "branch": "demo"
+    }
   }
 }
