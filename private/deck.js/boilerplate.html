@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=1024, user-scalable=no">
+
+  <title>Your deck.js Presentation</title>
+
+  <!-- Required stylesheet -->
+  <link rel="stylesheet" href="core/deck.core.css">
+
+  <!-- Extension CSS files go here. Remove or add as needed. -->
+  <link rel="stylesheet" media="screen" href="extensions/goto/deck.goto.css">
+  <link rel="stylesheet" media="screen" href="extensions/menu/deck.menu.css">
+  <link rel="stylesheet" media="screen" href="extensions/navigation/deck.navigation.css">
+  <link rel="stylesheet" media="screen" href="extensions/status/deck.status.css">
+  <link rel="stylesheet" media="screen" href="extensions/scale/deck.scale.css">
+
+  <!-- Style theme. More available in /themes/style/ or create your own. -->
+  <link rel="stylesheet" media="screen" href="themes/style/swiss.css">
+
+  <!-- Transition theme. More available in /themes/transition/ or create your own. -->
+  <link rel="stylesheet" media="screen" href="themes/transition/horizontal-slide.css">
+
+  <!-- Basic black and white print styles -->
+  <link rel="stylesheet" media="print" href="core/print.css">
+
+  <!-- Required Modernizr file -->
+  <script src="modernizr.custom.js"></script>
+</head>
+<body>
+  <div class="deck-container">
+
+    <!-- Begin slides. Just make elements with a class of slide. -->
+
+    <section class="slide">
+      <h1>Packages in Meteor</h1>
+      <h3>Elliott Spira - @elliottspira - elliottspira.com</h3>
+      <h3>h4ndshake.com</h3>
+    </section>
+
+    <section class="slide">
+      <h2>Latest News</h2>
+      <ul>
+        <li>
+          <h3>Meteor 0.9 released today! (just after I finished preparing for tonight)</h3>
+          <p>Incorporates meteorite into meteor as the default package management system.  Update now with <code>meteor update</code></p>
+        </li>
+        <li>
+          <h3>Meteorite (mrt) no longer required</h3>
+          <p><code>meteor add</code>, <code>meteor remove</code>, <code>meteor search</code> will be used hereforth</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>Agenda</h2>
+      <ol>
+        <li>
+          <h3>Customize an existing package from atmosphere</h3>
+          <p>smart.json wizardry</p>
+        </li>
+        <li>
+          <h3>Local packages</h3>
+          <p>keep it local, no need to share on github or commit after changes, changes integrate automatically</p>
+        </li>
+        <li>
+          <h3>Release a public package to atmosphere</h3>
+          <p>Live example on something I wrote yesterday!</p>
+        </li>
+      </ol>
+    </section>
+
+    <section class="slide">
+      <h2>Customizing an existing package</h2>
+      <h4>the wrong way: update the code for a package under the packages/ directory</h4>
+      <ol>
+        <li>
+          <p>Your changes will vanish upon an update</p>
+        </li>
+        <li>
+          <p>Your changes won't be observed when someone else checks out your code and fires up meteor</p>
+        </li>
+        <li>
+          <p>Your changes probably won't get deployed (depending on how you package and deploy)</p>
+        </li>
+      </ol>
+    </section>
+
+    <section class="slide">
+      <h2>Customizing an existing package</h2>
+      <h4>the right way: point to a different branch or fork in your smart.json</h4>
+      <ol>
+        <pre>
+          <code>
+            {
+              "packages": {
+                "bootstrap-3": {},
+                "blog": {
+                  "git": "https://github.com/em0ney/meteor-blog.git",
+                  "branch": "elliottspira"
+                }
+              }
+            }
+          </code>
+        </pre>
+      </ol>
+    </section>
+
+    <section class="slide">
+      <h2>Installing a local package</h2>
+      <h4>Look at what your package directory really is</h4>
+        <pre>
+          <code>
+[e-dawla:~/dev/meteor-syd-demo] > ls -l packages/
+total 136
+lrwxr-xr-x  1 e-dawla  staff  113 27 Aug 00:46 blaze-layout -> /Users/e-dawla/.meteorite/packages/blaze-layout/EventedMind/blaze-layout/273e3ab7d005d91a1a59c71bd224533b4dae2fbd
+lrwxr-xr-x  1 e-dawla  staff  105 27 Aug 00:45 blog -> /Users/e-dawla/.meteorite/packages/blog/Differential/meteor-blog/ae704c210d69855b13de1538e215fca9dcd46d81
+...
+lrwxr-xr-x  1 e-dawla  staff  111 27 Aug 00:45 iron-router -> /Users/e-dawla/.meteorite/packages/iron-router/EventedMind/iron-router/05415a8891ea87a00fb1e2388585f2ca5a38e0da
+lrwxr-xr-x  1 e-dawla  staff   38 27 Aug 09:37 meteor-map-locator -> /Users/e-dawla/dev/meteor-map-locator/
+          </code>
+        </pre>
+    </section> 
+
+    <section class="slide">
+
+      <h2>Installing a local package</h2>
+        <p>So let's <br><code>ln -s /Users/e-dawla/dev/meteor-map-locator/ /Users/e-dawla/dev/meteor-syd-demo/packages/meteor-map-locator</code> <br>to add our pacakge</p>
+        <pre>
+          <code>
+[e-dawla:~/dev/meteor-syd-demo] > ls -l packages/
+...
+lrwxr-xr-x  1 e-dawla  staff   38 27 Aug 09:37 meteor-map-locator -> /Users/e-dawla/dev/meteor-map-locator/ 
+          </code>
+        </pre>
+    </section>
+
+    <section class="slide">
+      <h2>Installing a local package</h2>
+      <h4>Advantages</h4>
+      <ol>
+        <li>
+          <h3>Packages are completely private</h3>
+          <p>No need to use public github or look to host gitlab.  Can link to any package on the filesystem</p>
+        </li>
+        <li>
+          <h3>No need to add, commit and push to update</h3>
+          <p>Easier development process when building out packages</p>
+        </li>
+        <li>
+          <h3>Changes in package code update on the page instantaneously</h3>
+          <p>The usual meteor refresh on changes to the code</p>
+        </li>
+      </ol>
+    </section>
+
+    <section class="slide">
+      <h2>Pushing a package to atmosphere</h2>
+      <h4>What's new</h4>
+      <ol>
+        <li>
+          <h3>No more mrt</h3>
+          <p>mrt command is gooooone!</p>
+        </li>
+        <li>
+          <h3>Naming convention is different</h3>
+          <p>Package directory names must be prefixed with your developer account username.  No more smart.json!</p>
+        </li>
+        <li>
+          <h3>New release command</h3>
+          <p><code>meteor publish --create --top-level</code></p>
+        </li>
+      </ol>
+    </section>
+
+    <section class="slide">
+      <h2>Pushing a package to atmosphere</h2>
+      <h4>Share useful code with the community</h4>
+      <ol>
+        <li>
+          <h3>Not private</h3>
+          <p>Hosted on Github</p>
+        </li>
+        <li>
+          <h3>Good for the community</h3>
+          <p>Countless others can get their projects up quicker with your help</p>
+        </li>
+        <li>
+          <h3>Fulfilling.</h3>
+          <p>Feels good to be a good dude/dudette</p>
+        </li>
+      </ol>
+    </section>
+
+    
+
+    <section class="slide">
+      <h2>Thanks!</h2>
+      <ol>
+        <li>
+          <h3>Check out h4ndshake.com</h3>
+        </li>
+        <li>
+          <h3>@elliottspira</h3>
+        </li>
+        <li>
+          <h3>elliottspira.com</h3>
+        </li>
+      </ol>
+    </section>
+
+    <!-- End slides. -->
+
+    <!-- Begin extension snippets. Add or remove as needed. -->
+
+    <!-- deck.navigation snippet -->
+    <div aria-role="navigation">
+      <a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
+      <a href="#" class="deck-next-link" title="Next">&#8594;</a>
+    </div>
+
+    <!-- deck.status snippet -->
+    <p class="deck-status" aria-role="status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.goto snippet -->
+    <form action="." method="get" class="goto-form">
+      <label for="goto-slide">Go to slide:</label>
+      <input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
+      <datalist id="goto-datalist"></datalist>
+      <input type="submit" value="Go">
+    </form>
+
+    <!-- End extension snippets. -->
+  </div>
+
+<!-- Required JS files. -->
+<script src="jquery.min.js"></script>
+<script src="core/deck.core.js"></script>
+
+<!-- Extension JS files. Add or remove as needed. -->
+<script src="extensions/menu/deck.menu.js"></script>
+<script src="extensions/goto/deck.goto.js"></script>
+<script src="extensions/status/deck.status.js"></script>
+<script src="extensions/navigation/deck.navigation.js"></script>
+<script src="extensions/scale/deck.scale.js"></script>
+
+<!-- Initialize the deck. You can put this in an external file if desired. -->
+<script>
+  $(function() {
+    $.deck('.slide');
+  });
+</script>
+</body>
+</html>
