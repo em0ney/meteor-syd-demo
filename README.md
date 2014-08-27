@@ -44,7 +44,14 @@ Now, fire up your development server, and any change you make to code under your
 
 ## 3. release a public package to atmosphere
 
+
 Key components:
+
+According to new docs:
+
+`meteor publish --create --top-level`
+
+Need to also add a version to each dependency and to the Package.describe area.
 
 
 #### Tips
